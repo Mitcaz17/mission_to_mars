@@ -1,3 +1,4 @@
+from ast import Return
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 import pandas as pd
@@ -100,31 +101,31 @@ def mars_facts():
 def hemispheres (browser):
 
 
-   url = 'https://marshemispheres.com/'
+    url = 'https://marshemispheres.com/'
 
-   browser.visit(url)
+    browser.visit(url)
 
-   hemisphere_image_urls = []
+    hemisphere_image_urls = []
 
-   links = browser.find_by_css('a.product-item img')
+    links = browser.find_by_css('a.product-item img')
 
-    for i in range (len(h_links)):
-            
+    for i in range (len(links)):
+        
         hemisphere = {}
-            
+        
         browser.find_by_css('a.product-item img')[i].click()
-            
+        
         sample_elem = browser.links.find_by_text('Sample').first
         hemisphere ['img_url'] = sample_elem['href']
-            
+        
         hemisphere['title'] = browser.find_by_css('h2.title').text
-            
+        
         hemisphere_image_urls.append(hemisphere)
-            
+        
         browser.back()
 
- 
- Return hemisphere_image_urls
+
+    return hemisphere_image_urls 
 
 if __name__ == "__main__":
 
